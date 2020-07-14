@@ -1,0 +1,22 @@
+﻿  boids.cpp
+F:\project\visualStudio2019\boids\boids\boids.cpp(31,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(31,28): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(69,13): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(69,20): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(71,13): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(102,25): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(103,25): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(147,38): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(148,37): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(151,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(245,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(266,47): warning C4305: аргумент: усечение из "double" в "float"
+F:\project\visualStudio2019\boids\boids\boids.cpp(267,53): warning C4305: аргумент: усечение из "double" в "float"
+F:\project\visualStudio2019\boids\boids\boids.cpp(268,49): warning C4305: аргумент: усечение из "double" в "float"
+F:\project\visualStudio2019\boids\boids\boids.cpp(279,59): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(328,56): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(328,50): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(337,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(337,61): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\project\visualStudio2019\boids\boids\boids.cpp(337,55): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+  boids.vcxproj -> F:\project\visualStudio2019\boids\Debug\boids.exe
