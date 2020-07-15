@@ -18,7 +18,7 @@ public:
     Sprite sprite;
     std::vector<IntRect> frames;
 
-    Animation() {}
+    Animation():Frame (0),speed (0) {}
 
     Animation(Texture& t, int x, int y, int w, int h, int count, float Speed)
     {
@@ -55,16 +55,13 @@ class Entity
 public:
     float x, y, dx, dy, R, angle;
     float x1, y1;
-    bool life, isCollide;
+    bool life, isCollide, isCollideFuture;
     std::string name;
     Animation anim;
 
-    Entity()
-    {
-        life = 1;
-    }
+    Entity():life (1),R (30), angle (0),dx (0),dy (0),isCollide(false),isCollideFuture(false),x(0),y(0),x1(0),y1(0){}
 
-    void settings(Animation& a, int X, int Y, float Angle = 0, int radius = 30 )
+    void settings(Animation& a, float X, float Y, float Angle = 0, float radius = 30 )
     {
         anim = a;
         x = X; y = Y;
@@ -111,11 +108,9 @@ public:
     void  update()
     {
       
-      //if(!isCollide)angle = (atan2(x1 - x, y - y1))*57.2956/6;
+     // if(!isCollide)angle = (atan2(x1 - x, y - y1))*57.2956/6;
       angle += (rand() % 7 - 3)* DEGTORAD;  /*try this*/
 
-      
-  
       //   angle = angle * DEGTORAD;
      
       /* 
@@ -125,22 +120,27 @@ public:
             isCollide = false; 
             //std::cout << "check" << std::endl;
         }
-        */
-      
-        if (x > W) angle = 3.14 - angle;
-        if (x < 0) angle = 3.14 - angle;
-        if (y > H) angle = -angle;
-        if (y < 0) angle =- angle;
-        
+        */ 
 
       
-      
-    
+      if (isCollideFuture) {
+        if (x > W) angle = angle+3.14;
+        if (x < 0) angle = angle+3.14;
+        if (y > H) angle = angle+3.14;
+        if (y < 0) angle = angle+3.14;
+        isCollideFuture = false;
+
+      }
+      else {
+          if (x > W) angle = 3.14 - angle;
+          if (x < 0) angle = 3.14 - angle;
+          if (y > H) angle = -angle;
+          if (y < 0) angle = -angle;
+      }
         
         dx = cos(angle)*6 ;
         dy = sin(angle)*6 ;
         
-
         //std::cout << dx << " " << dy << std::endl;
 
         /*
@@ -174,10 +174,8 @@ public:
 
     void draw(RenderWindow& app)
     {
-       
-     
         anim.sprite.setPosition(x, y);
-        anim.sprite.setRotation(angle * 57.2956 + 90);
+        anim.sprite.setRotation(angle * 57.2956 + 90); // отрисовка спрайта (перевод с радиан в градусы)
         app.draw(anim.sprite);
     
    /*
@@ -195,9 +193,14 @@ public:
 };
 
 
+bool isCollideFuture(Entity* a, Entity* b)// пересечение в будующем
+{
+    return (b->x - a->x) * (b->x - a->x) +
+        (b->y - a->y) * (b->y - a->y) <
+        ((a->R+6)+ (b->R+6)) * ((a->R+6) + (b->R+6));
+}
 
-
-bool isCollide(Entity* a, Entity* b)
+bool isCollide(Entity* a, Entity* b)  // пересечение
 {
     return (b->x - a->x) * (b->x - a->x) +
         (b->y - a->y) * (b->y - a->y) <
@@ -314,14 +317,7 @@ int main()
                     x2 = b->x;
                     y2 = b->y;
                     tempBird = b;
-               
-                  if (isCollide(a, b)) {
-                    a->angle = b->angle;
-                    a->isCollide = true;
-                }
-                else a->isCollide = false;
-              
-                
+   
                 }
                // if (isCollide(a, b))std::cout << 1 << std::endl;
                 
@@ -329,12 +325,14 @@ int main()
                
             }
             if (isCollide(a, tempBird)) {
-                a->angle = tempBird->angle;
-                a->isCollide = true;
-            }
-            else a->isCollide = false;
+                std::cout << 1;
 
-            a->x1 = calcCoordinate(x1, x2);
+            if (a->angle < tempBird->angle)  a->angle = tempBird->angle+0.20; // выбор отклонения
+            else a->angle = tempBird->angle-0.20;
+            
+            }  
+            if (isCollideFuture(a, tempBird))  a->isCollideFuture = true;
+            a->x1 = calcCoordinate(x1, x2);  // передача координат движения
             a->y1 = calcCoordinate(y1, y2);
 
         }
@@ -353,7 +351,7 @@ int main()
 
             e->update();
             e->anim.update();
-            std::cout <<". "<< e->x1 << " " << e->y1 << "  ";
+          //  std::cout <<". "<< e->x1 << " " << e->y1 << "  ";
 
            // if (e->life == false) { i = entities.erase(i); delete e; }
           //  else
