@@ -108,7 +108,7 @@ public:
     void  update()
     {
       
-     // if(!isCollide)angle = (atan2(x1 - x, y - y1))*57.2956/6;
+      if(!isCollide)angle = (atan2(x1 - x, y - y1))*57.2956/6;
       angle += (rand() % 7 - 3)* DEGTORAD;  /*try this*/
 
       //   angle = angle * DEGTORAD;
@@ -124,11 +124,24 @@ public:
 
       
       if (isCollideFuture) {
-        if (x > W) angle = angle+3.14;
-        if (x < 0) angle = angle+3.14;
-        if (y > H) angle = angle+3.14;
-        if (y < 0) angle = angle+3.14;
-        isCollideFuture = false;
+          if (x > W) {
+              angle = angle + 3.14;
+              x = W;
+          }
+            
+          if (x < 0) {
+              angle = angle + 3.14;
+              x = 0;
+          }
+          if (y > H) {
+              angle = angle + 3.14;
+              y = H;
+          }
+          if (y < 0) {
+              angle = angle + 3.14;
+              y = 0;
+          }
+          isCollideFuture = false;
 
       }
       else {
@@ -195,16 +208,24 @@ public:
 
 bool isCollideFuture(Entity* a, Entity* b)// пересечение в будующем
 {
+
+    
     return (b->x - a->x) * (b->x - a->x) +
         (b->y - a->y) * (b->y - a->y) <
         ((a->R+6)+ (b->R+6)) * ((a->R+6) + (b->R+6));
-}
+        
+   
+
+        }
 
 bool isCollide(Entity* a, Entity* b)  // пересечение
 {
+    /*
     return (b->x - a->x) * (b->x - a->x) +
         (b->y - a->y) * (b->y - a->y) <
-        (a->R + b->R) * (a->R + b->R);
+        (a->R + b->R) * (a->R + b->R) - 1;
+        */
+    return abs(a->x - b->x) < a->R && abs(a->y - b->y) < a->R;
 }
 float isMidlle(Entity* a, Entity* b) {
     return abs(a->x - b->x) + abs(a->y - b->y); //середина между точками
@@ -263,10 +284,10 @@ int main()
     a->settings(sBullet, rand() % W, rand() % H, rand() % 360, 25);
     entities.push_back(a);
     */
-    for (int i = 0; i< 3; i++)
+    for (int i = 0; i< 200;i++)
     {
         bird* a = new bird();
-        a->settings(sBullet, rand() % W, rand() % H, rand() % 360, 100);
+        a->settings(sBullet, rand() % W, rand() % H, rand() % 360, 25);
         entities.push_back(a);
     }
    
@@ -320,16 +341,26 @@ int main()
    
                 }
                // if (isCollide(a, b))std::cout << 1 << std::endl;
-                
-              
-               
             }
+            if ((a->x == tempBird->x) || (a->y == tempBird->y))continue;
             if (isCollide(a, tempBird)) {
-                std::cout << 1;
+               // std::cout << "x = "<<a->x<<" x ="<<tempBird->x << "y = " << a->y << " y =" << tempBird->y<<std::endl;
+                /*
+                if (a->angle > tempBird->angle) {
+                    a->angle = tempBird->angle - (rand()%1+17)/100; // выбор отклонения
+                }
+                else {
+                    a->angle = tempBird->angle + (rand() % 1 + 17) / 100;
+                }
+            */
+                a->isCollide = true;
+                if (a->x+a->y > tempBird->x+ tempBird->y) {
+                    a->angle = tempBird->angle + (rand() % 1 + 17) / 100; // выбор отклонения
+                }
+                else {
+                    a->angle = tempBird->angle - (rand() % 1 + 17) / 100;
+                }
 
-            if (a->angle < tempBird->angle)  a->angle = tempBird->angle+0.20; // выбор отклонения
-            else a->angle = tempBird->angle-0.20;
-            
             }  
             if (isCollideFuture(a, tempBird))  a->isCollideFuture = true;
             a->x1 = calcCoordinate(x1, x2);  // передача координат движения
@@ -357,7 +388,7 @@ int main()
           //  else
             i++;
         }
-        std :: cout << std::endl;
+       // std :: cout << std::endl;
         //////draw//////
         app.draw(background);
         for (auto i : entities) i->draw(app);
