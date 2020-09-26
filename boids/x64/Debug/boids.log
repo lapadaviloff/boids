@@ -1,0 +1,20 @@
+﻿  boids.cpp
+D:\project\visualStudio2019\boids\boids\boids.cpp(38,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(38,28): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(45,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(97,19): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(98,19): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(103,60): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(108,29): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(112,29): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(116,29): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(120,29): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(127,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(131,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(152,49): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(194,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(207,48): warning C4305: аргумент: усечение из "double" в "float"
+D:\project\visualStudio2019\boids\boids\boids.cpp(216,61): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(216,49): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\project\visualStudio2019\boids\boids\boids.cpp(216,37): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+sfml-graphics-d.lib(sfml-graphics-d-2.dll) : fatal error LNK1112: тип компьютера модуля "x86" конфликтует с типом целевого компьютера "x64"
